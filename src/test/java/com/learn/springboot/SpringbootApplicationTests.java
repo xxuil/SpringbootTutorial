@@ -2,8 +2,8 @@ package com.learn.springboot;
 
 import com.learn.springboot.mapper.PostMapper;
 import com.learn.springboot.pojo.Post;
+import com.learn.springboot.service.PostRepository;
 import com.learn.springboot.utils.RedisUtil;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +21,9 @@ public class SpringbootApplicationTests {
 
     @Autowired
     RedisUtil<Post> util;
+
+    @Autowired
+    PostRepository ps;
 
 //    @Test
 //    public void contextLoads() {
@@ -85,30 +88,22 @@ public class SpringbootApplicationTests {
 //        System.out.println(list);
 //    }
 
-    @Test
-    public void testSQL(){
-        ParallelTesterSQL.testStarter(100000, pm);
-    }
+//    @Test
+//    public void testSQL(){
+//        ParallelSQL.testStarter(100000, pm);
+//    }
+//
+//    @Test
+//    public void testRedis(){
+//        ParallelRedis.testStarter(100000, util);
+//    }
 
     @Test
-    public void testRedis(){
-        ParallelTesterRedis.testStarter(100000, util);
-    }
+    public void testCouchbase(){
+        List<Post> list = pm.findFirst();
+        List<Post> that = ps.findTop10ByOrderByTimeDesc();
 
-    public static void randomSet(int min, int max, int n, HashSet<Integer> set) {
-        if (n > (max - min + 1) || max < min) {
-            return;
-        }
-        for (int i = 0; i < n; i++) {
-            // 调用Math.random()方法
-            int num = (int) (Math.random() * (max - min)) + min;
-            set.add(num);// 将不同的数存入HashSet中
-        }
-        int setSize = set.size();
-        // 如果存入的数小于指定生成的个数，则调用递归再生成剩余个数的随机数，如此循环，直到达到指定大小
-        if (setSize < n) {
-            randomSet(min, max, n - setSize, set);// 递归
-        }
+        System.out.println(list);
+        System.out.println(that);
     }
-
 }
