@@ -15,4 +15,5 @@ public interface PostRepository extends CouchbasePagingAndSortingRepository<Post
     <S extends Post> Iterable<S> saveAll(Iterable<S> iterable);
 
     List<Post> findTop10ByOrderByTimeDesc();
+
 }

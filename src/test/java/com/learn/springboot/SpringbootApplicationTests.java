@@ -1,5 +1,6 @@
 package com.learn.springboot;
 
+import com.learn.springboot.concurrent.Starter;
 import com.learn.springboot.mapper.PostMapper;
 import com.learn.springboot.pojo.Post;
 import com.learn.springboot.service.PostRepository;
@@ -93,17 +94,13 @@ public class SpringbootApplicationTests {
 //        ParallelSQL.testStarter(100000, pm);
 //    }
 //
-//    @Test
-//    public void testRedis(){
-//        ParallelRedis.testStarter(100000, util);
-//    }
+    @Test
+    public void testRedis(){
+        Starter.RedisStarter(1, util);
+    }
 
     @Test
     public void testCouchbase(){
-        List<Post> list = pm.findFirst();
-        List<Post> that = ps.findTop10ByOrderByTimeDesc();
-
-        System.out.println(list);
-        System.out.println(that);
+        Starter.CouchbaseStarter(1, ps);
     }
 }
