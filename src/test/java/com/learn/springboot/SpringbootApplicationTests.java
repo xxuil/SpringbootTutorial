@@ -94,13 +94,13 @@ public class SpringbootApplicationTests {
 //        ParallelSQL.testStarter(100000, pm);
 //    }
 //
-    @Test
-    public void testRedis(){
-        Starter.RedisStarter(1, util);
-    }
-
-    @Test
-    public void testCouchbase(){
-        Starter.CouchbaseStarter(1, ps);
-    }
+//    @Test
+//    public void testRedis(){
+//        Starter.RedisStarter(1, util);
+//    }
+//
+//    @Test
+//    public void testCouchbase(){
+//        Starter.CouchbaseStarter(1, ps);
+//    }
 }
