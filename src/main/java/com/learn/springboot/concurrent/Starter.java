@@ -2,7 +2,6 @@ package com.learn.springboot.concurrent;
 
 import com.learn.springboot.mapper.PostMapper;
 import com.learn.springboot.pojo.Post;
-import com.learn.springboot.service.PostRepository;
 import com.learn.springboot.utils.RedisUtil;
 
 public class Starter {
@@ -25,19 +24,6 @@ public class Starter {
         for(int i = 0; i < numThreads; i++){
             ParallelRedis p = new ParallelRedis();
             p.util = util;
-            Thread t = new Thread(p);
-            threads[i] = t;
-        }
-
-        threadStarter(numThreads, threads);
-    }
-
-    public static void CouchbaseStarter(int numThreads, PostRepository pr){
-        Thread[] threads = new Thread[numThreads];
-
-        for(int i = 0; i < numThreads; i++){
-            ParallelCouchbase p = new ParallelCouchbase();
-            p.pr = pr;
             Thread t = new Thread(p);
             threads[i] = t;
         }

@@ -1,10 +1,8 @@
 package com.learn.springboot;
 
-import com.learn.springboot.concurrent.Starter;
+
 import com.learn.springboot.mapper.PostMapper;
 import com.learn.springboot.pojo.Post;
-import com.learn.springboot.service.PostRepository;
-import com.learn.springboot.utils.RedisUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,27 +18,21 @@ public class SpringbootApplicationTests {
     @Autowired
     PostMapper pm;
 
-    @Autowired
-    RedisUtil<Post> util;
-
-    @Autowired
-    PostRepository ps;
-
 //    @Test
 //    public void contextLoads() {
 //    }
 
-//    @Test
-//    public void testAdd(){
-//        for(int i = 0; i < 10000; i++){
-//            Post p = new Post();
-//            p.setId(0);
-//            p.setTitle("#" + i);
-//            p.setContent("*" + i + i + i);
-//            p.setTime(String.valueOf(System.currentTimeMillis()));
-//            pm.add(p);
-//        }
-//    }
+    @Test
+    public void testAdd(){
+        for(int i = 0; i < 10000; i++){
+            Post p = new Post();
+            p.setId(0);
+            p.setTitle("#" + i);
+            p.setContent("*" + i + i + i);
+            p.setTime(String.valueOf(System.currentTimeMillis()));
+            pm.add(p);
+        }
+    }
 
 
 //    @Test
