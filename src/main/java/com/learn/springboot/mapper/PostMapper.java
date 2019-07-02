@@ -24,4 +24,10 @@ public interface PostMapper {
 
     @Select("select * from post order by time desc limit 25")
     List<Post> findRecent();
+
+    @Select("select COUNT(*) from post")
+    int getPostCount();
+
+    @Update("update post set viewCount = viewCount + 1 where pid = #{pid}")
+    void view(int pid);
 }

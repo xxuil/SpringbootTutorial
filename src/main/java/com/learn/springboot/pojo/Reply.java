@@ -6,7 +6,8 @@ public class Reply implements Serializable {
     private int rid;
     private String content;
     private int postId;
-    private int uid;
+    private int userId;
+    private String time;
 
     public int getRid() {
         return rid;
@@ -20,8 +21,12 @@ public class Reply implements Serializable {
         return postId;
     }
 
-    public int getUid() {
-        return uid;
+    public int getUserId() {
+        return userId;
+    }
+
+    public String getTime() {
+        return time;
     }
 
     public void setRid(int rid) {
@@ -36,8 +41,12 @@ public class Reply implements Serializable {
         this.postId = postId;
     }
 
-    public void setUid(int uid) {
-        this.uid = uid;
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     @Override

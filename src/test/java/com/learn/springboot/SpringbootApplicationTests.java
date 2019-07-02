@@ -2,6 +2,8 @@ package com.learn.springboot;
 
 
 import com.learn.springboot.mapper.PostMapper;
+import com.learn.springboot.mapper.ReplyMapper;
+import com.learn.springboot.mapper.UserMapper;
 import com.learn.springboot.pojo.Post;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,21 +18,27 @@ public class SpringbootApplicationTests {
     @Autowired
     PostMapper pm;
 
+    @Autowired
+    UserMapper um;
+
+    @Autowired
+    ReplyMapper rm;
+
 //    @Test
 //    public void contextLoads() {
 //    }
 
-    @Test
-    public void testAdd(){
-        for(int i = 0; i < 1000; i++){
-            Post p = new Post();
-            p.setPid(0);
-            p.setTitle("#" + i);
-            p.setContent("*" + i + i + i);
-            p.setTime(String.valueOf(System.currentTimeMillis()));
-            pm.add(p);
-        }
-    }
+//    @Test
+//    public void testAdd(){
+//        for(int i = 0; i < 1000; i++){
+//            Post p = new Post();
+//            p.setPid(0);
+//            p.setTitle("#" + i);
+//            p.setContent("*" + i + i + i);
+//            p.setTime(String.valueOf(System.currentTimeMillis()));
+//            pm.add(p);
+//        }
+//    }
 
 
 //    @Test
