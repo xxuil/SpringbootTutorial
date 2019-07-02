@@ -5,12 +5,12 @@
 
 <table align='center' border='1' cellspacing='0'>
     <tr>
-        <td>id</td>
+        <td>pid</td>
         <td>title</td>
     </tr>
     <c:forEach items="${posts}" var="c" varStatus="st">
         <tr>
-            <td>${c.id}</td>
+            <td>${c.pid}</td>
             <td>${c.title}</td>
 
         </tr>

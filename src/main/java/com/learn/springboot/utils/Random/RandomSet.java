@@ -1,4 +1,4 @@
-package com.learn.springboot.utils;
+package com.learn.springboot.utils.Random;
 
 import java.util.HashSet;
 

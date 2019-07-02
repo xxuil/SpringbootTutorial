@@ -9,7 +9,7 @@ import org.springframework.data.couchbase.core.mapping.Document;
 @Document
 public class Post implements Serializable {
     @Id
-    private int id;
+    private int pid;
 
     @Field
     private String title;
@@ -32,12 +32,12 @@ public class Post implements Serializable {
         return content;
     }
 
-    public int getId() {
-        return id;
+    public int getPid() {
+        return pid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPid(int pid) {
+        this.pid = pid;
     }
 
     public void setTitle(String title) {
@@ -54,7 +54,7 @@ public class Post implements Serializable {
 
     @Override
     public String toString() {
-        return "Post: " + id;
+        return "Post: " + pid;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class Post implements Serializable {
             return true;
 
         if(obj instanceof Post){
-            if(((Post) obj).id == this.id){
+            if(((Post) obj).pid == this.pid){
                 if(((Post) obj).title.equals(this.title)){
                     if(((Post) obj).content.equals(this.content))
                         return true;

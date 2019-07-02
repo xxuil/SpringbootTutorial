@@ -1,4 +1,4 @@
-package com.learn.springboot.utils;
+package com.learn.springboot.utils.DateTime;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

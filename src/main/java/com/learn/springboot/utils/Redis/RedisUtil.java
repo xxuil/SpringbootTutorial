@@ -1,4 +1,4 @@
-package com.learn.springboot.utils;
+package com.learn.springboot.utils.Redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;

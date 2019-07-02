@@ -2,7 +2,7 @@ package com.learn.springboot.concurrent;
 
 import com.learn.springboot.mapper.PostMapper;
 import com.learn.springboot.pojo.Post;
-import com.learn.springboot.utils.RedisUtil;
+import com.learn.springboot.utils.Redis.RedisUtil;
 
 public class Starter {
     public static void SQLStarter(int numThreads, PostMapper pm){

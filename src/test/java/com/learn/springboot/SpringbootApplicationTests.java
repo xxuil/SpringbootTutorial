@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.*;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SpringbootApplicationTests {
@@ -24,9 +22,9 @@ public class SpringbootApplicationTests {
 
     @Test
     public void testAdd(){
-        for(int i = 0; i < 10000; i++){
+        for(int i = 0; i < 1000; i++){
             Post p = new Post();
-            p.setId(0);
+            p.setPid(0);
             p.setTitle("#" + i);
             p.setContent("*" + i + i + i);
             p.setTime(String.valueOf(System.currentTimeMillis()));
@@ -36,12 +34,20 @@ public class SpringbootApplicationTests {
 
 
 //    @Test
+//    public void testDelete() {
+//        for(int i = 0; i < 1000; i++){
+//            pm.delete(i + 1);
+//        }
+//    }
+
+
+//    @Test
 //    public void testUpdate(){
 //        HashSet<Integer> set = new HashSet<>();
 //        randomSet(1, 10000, 1000, set);
 //        for(Integer i : set){
 //            Post p = new Post();
-//            p.setId(i);
+//            p.setPid(i);
 //            p.setTitle("new");
 //            p.setContent("newwww");
 //            p.setTime(String.valueOf(System.currentTimeMillis()));
@@ -61,7 +67,7 @@ public class SpringbootApplicationTests {
 //        List<Post> that = pm.findAll();
 //        int i = 0;
 //        for(Post p : that){
-//            Assert.assertEquals(p.getId(), testList.get(i).getId());
+//            Assert.assertEquals(p.getPid(), testList.get(i).getPid());
 //            i += 1;
 //        }
 //    }
