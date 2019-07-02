@@ -1,7 +1,6 @@
 package com.learn.springboot.pojo;
 
 import java.io.Serializable;
-import java.util.List;
 
 
 public class Post implements Serializable {
@@ -13,7 +12,7 @@ public class Post implements Serializable {
 
     // Version 2
     private User user;
-    private int uid;
+    private int userId;
     private int viewCount;
     private int replyCount;
 
@@ -55,8 +54,8 @@ public class Post implements Serializable {
         return user;
     }
 
-    public int getUid() {
-        return uid;
+    public int getUserId() {
+        return userId;
     }
 
     public int getViewCount() {
@@ -71,8 +70,8 @@ public class Post implements Serializable {
         this.user = user;
     }
 
-    public void setUid(int uid) {
-        this.uid = uid;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public void setViewCount(int viewCount) {
