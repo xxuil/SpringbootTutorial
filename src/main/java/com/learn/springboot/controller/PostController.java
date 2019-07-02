@@ -1,4 +1,4 @@
-package com.learn.springboot.web;
+package com.learn.springboot.controller;
 
 import com.learn.springboot.mapper.PostMapper;
 import com.learn.springboot.pojo.Post;

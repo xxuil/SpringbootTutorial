@@ -10,6 +10,6 @@ public class ParallelSQL implements Runnable {
 
     @Override
     public void run() {
-        List<Post> list = pm.findFirst();
+        List<Post> list = pm.findRecent();
     }
 }

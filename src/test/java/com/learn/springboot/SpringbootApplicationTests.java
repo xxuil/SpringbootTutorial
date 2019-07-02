@@ -82,7 +82,7 @@ public class SpringbootApplicationTests {
 
 //    @Test
 //    public void testFindPage(){
-//        List<Post> list = pm.findFirst();
+//        List<Post> list = pm.findRecent();
 //        Assert.assertEquals(list.size(), 10);
 //        System.out.println(list);
 //    }

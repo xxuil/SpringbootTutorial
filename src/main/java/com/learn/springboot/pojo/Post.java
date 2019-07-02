@@ -1,25 +1,23 @@
 package com.learn.springboot.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
-import com.couchbase.client.java.repository.annotation.Field;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.couchbase.core.mapping.Document;
 
-@Document
 public class Post implements Serializable {
-    @Id
+    // Version 1
     private int pid;
-
-    @Field
     private String title;
-
-    @Field
     private String content;
-
-    @Field
     private String time;
 
+    // Version 2
+    private User user;
+    private int uid;
+    private int viewCount;
+    private int replyCount;
+
+    // Version 1
     public String getTime(){
         return time;
     }
@@ -50,6 +48,39 @@ public class Post implements Serializable {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    // Version 2
+    public User getUser() {
+        return user;
+    }
+
+    public int getUid() {
+        return uid;
+    }
+
+    public int getViewCount() {
+        return viewCount;
+    }
+
+    public int getReplyCount() {
+        return replyCount;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
+    }
+
+    public void setReplyCount(int replyCount) {
+        this.replyCount = replyCount;
     }
 
     @Override
