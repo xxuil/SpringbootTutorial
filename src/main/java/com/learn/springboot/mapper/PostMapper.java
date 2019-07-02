@@ -7,7 +7,8 @@ import java.util.List;
 
 @Mapper
 public interface PostMapper {
-    @Insert("insert into post (pid,title,content,time) values (#{pid}, #{title}, #{content}, #{time})")
+    @Insert("insert into post (pid,title,content,time, userId, viewCount, replyCount) " +
+            "values (#{pid}, #{title}, #{content}, #{time}, #{userId}, #{viewCount}, #{replyCount})")
     void add(Post p);
 
     @Update("update post set title=#{title}, content=#{content}, time=#{time} where pid=#{pid}")
@@ -22,7 +23,7 @@ public interface PostMapper {
     @Select("select * from post order by time desc")
     List<Post> findAll();
 
-    @Select("select * from post order by time desc limit 25")
+    @Select("select * from post order by time desc limit 5")
     List<Post> findRecent();
 
     @Select("select COUNT(*) from post")

@@ -5,6 +5,9 @@ import com.learn.springboot.mapper.PostMapper;
 import com.learn.springboot.mapper.ReplyMapper;
 import com.learn.springboot.mapper.UserMapper;
 import com.learn.springboot.pojo.Post;
+import com.learn.springboot.pojo.Reply;
+import com.learn.springboot.pojo.User;
+import com.learn.springboot.utils.DateTime.DateTimeUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,57 @@ public class SpringbootApplicationTests {
 
     @Autowired
     ReplyMapper rm;
+
+    @Test
+    public void createUser() {
+        for(int i = 0; i < 100; i++){
+            User u = new User();
+            u.setUid(0);
+            u.setUsername("#" + i);
+            u.setPassword("*" + i);
+            um.add(u);
+        }
+    }
+
+    @Test
+    public void createPost() {
+        for(int i = 0; i < 100; i++){
+            User u = um.get(i + 1);
+            Post p = new Post();
+            p.setPid(0);
+            p.setTitle("#" + i);
+            p.setContent("*" + i + i);
+            p.setTime(String.valueOf(System.currentTimeMillis()));
+            p.setUser(u);
+            p.setUserId(u.getUid());
+            p.setViewCount(0);
+            p.setReplyCount(0);
+            pm.add(p);
+        }
+    }
+
+    @Test
+    public void viewPost() {
+        for(int i = 0; i < 100; i++){
+            pm.view(i + 1);
+        }
+    }
+
+    @Test
+    public void createReply() {
+        for(int i = 0; i < 100; i++) {
+            User u = um.get(i + 1);
+            Post p = pm.get(i + 1);
+            Reply r = new Reply();
+            r.setRid(0);
+            r.setContent("***" + i + i);
+            r.setUserId(u.getUid());
+            r.setPostId(p.getPid());
+            r.setTime(String.valueOf(DateTimeUtil.currentTimeMillis()));
+            pm.reply(i + 1);
+            rm.add(r);
+        }
+    }
 
 //    @Test
 //    public void contextLoads() {
