@@ -14,6 +14,9 @@ public interface UserMapper {
     @Select("select * from user where uid = #{uid}")
     User get(int uid);
 
+    @Select("select * from user where username = #{username, jdbcType=VARCHAR}")
+    User get(String username);
+
     @Delete("delete from user where uid = #{uid}")
     void delete(int uid);
 

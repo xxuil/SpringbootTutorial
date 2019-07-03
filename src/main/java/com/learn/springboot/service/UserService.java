@@ -3,13 +3,9 @@ package com.learn.springboot.service;
 import com.learn.springboot.pojo.User;
 
 public interface UserService {
-    boolean addUser(User user);
+    void addUser(User user);
 
-    boolean updateUser(User user);
-
-    int login(String username, String password);
-
-    boolean check(String username);
+    boolean login(String username, String password);
 
     User get(int uid);
 

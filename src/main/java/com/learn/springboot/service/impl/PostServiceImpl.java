@@ -9,7 +9,7 @@ import java.util.List;
 
 public class PostServiceImpl implements PostService {
     @Autowired
-    public PostMapper postMapper;
+    PostMapper postMapper;
 
     @Override
     public void add(Post p) {

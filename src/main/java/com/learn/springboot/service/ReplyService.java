@@ -7,7 +7,7 @@ import java.util.List;
 public interface ReplyService {
     List<Reply> getReplies(int pid);
 
-    boolean addReply(Reply reply);
+    void addReply(Reply reply);
 
     int getCount(int pid);
 }
