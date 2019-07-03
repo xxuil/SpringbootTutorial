@@ -22,6 +22,11 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public void update(Post p) {
+        postMapper.update(p);
+    }
+
+    @Override
     public Post get(int pid) {
         return postMapper.get(pid);
     }

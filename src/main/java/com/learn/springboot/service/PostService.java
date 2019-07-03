@@ -14,6 +14,8 @@ public interface PostService {
 
     void add(Post p);
 
+    void update(Post p);
+
     void view(int pid);
 
     int getCount();
