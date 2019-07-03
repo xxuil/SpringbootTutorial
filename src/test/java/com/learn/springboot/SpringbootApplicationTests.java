@@ -79,45 +79,6 @@ public class SpringbootApplicationTests {
     }
 
 //    @Test
-//    public void contextLoads() {
-//    }
-
-//    @Test
-//    public void testAdd(){
-//        for(int i = 0; i < 1000; i++){
-//            Post p = new Post();
-//            p.setPid(0);
-//            p.setTitle("#" + i);
-//            p.setContent("*" + i + i + i);
-//            p.setTime(String.valueOf(System.currentTimeMillis()));
-//            pm.add(p);
-//        }
-//    }
-
-
-//    @Test
-//    public void testDelete() {
-//        for(int i = 0; i < 1000; i++){
-//            pm.delete(i + 1);
-//        }
-//    }
-
-
-//    @Test
-//    public void testUpdate(){
-//        HashSet<Integer> set = new HashSet<>();
-//        randomSet(1, 10000, 1000, set);
-//        for(Integer i : set){
-//            Post p = new Post();
-//            p.setPid(i);
-//            p.setTitle("new");
-//            p.setContent("newwww");
-//            p.setTime(String.valueOf(System.currentTimeMillis()));
-//            pm.update(p);
-//        }
-//    }
-
-//    @Test
 //    public void testRedisA(){
 //        List<Post> testList = pm.findAll();
 //        util.setCatcheList("newest", testList);

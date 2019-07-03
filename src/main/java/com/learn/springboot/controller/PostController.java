@@ -16,8 +16,8 @@ public class PostController {
     PostMapper postMapper;
 
     @RequestMapping("/listPost")
-    public String listPost(Model m) throws Exception{
-        List<Post> posts = postMapper.findAll();
+    public String listPost(Model m) {
+        List<Post> posts = postMapper.findRecent();
         m.addAttribute("posts", posts);
         return "listPost";
     }
