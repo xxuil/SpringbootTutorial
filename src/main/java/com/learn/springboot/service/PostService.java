@@ -12,9 +12,9 @@ public interface PostService {
 
     Post get(int pid);
 
-    boolean add(Post p);
+    void add(Post p);
 
-    boolean view(int pid);
+    void view(int pid);
 
     int getCount();
 }
