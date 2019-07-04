@@ -38,22 +38,22 @@ public class SpringbootApplicationTests {
         }
     }
 
-//    @Test
-//    public void createPost() {
-//        for(int i = 0; i < 100; i++){
-//            User u = um.get(i + 1);
-//            Post p = new Post();
-//            p.setPid(0);
-//            p.setTitle("#" + i);
-//            p.setContent("*" + i + i);
-//            p.setTime(String.valueOf(System.currentTimeMillis()));
-//            p.setUser(u);
-//            p.setUserId(u.getUid());
-//            p.setViewCount(0);
-//            p.setReplyCount(0);
-//            pm.add(p);
-//        }
-//    }
+    @Test
+    public void createPost() {
+        for(int i = 0; i < 100; i++){
+            User u = um.get("#" + i);
+            Post p = new Post();
+            p.setPid(0);
+            p.setTitle("#" + i);
+            p.setContent("*" + i + i);
+            p.setTime(String.valueOf(System.currentTimeMillis()));
+            p.setUser(u);
+            p.setUserId(u.getUid());
+            p.setViewCount(0);
+            p.setReplyCount(0);
+            pm.add(p);
+        }
+    }
 
     @Test
     public void viewPost() {
@@ -64,18 +64,18 @@ public class SpringbootApplicationTests {
 
     @Test
     public void createReply() {
-//        for(int i = 0; i < 100; i++) {
-//            User u = um.get(i + 1);
-//            Post p = pm.get(i + 1);
-//            Reply r = new Reply();
-//            r.setRid(0);
-//            r.setContent("***" + i + i);
-//            r.setUserId(u.getUid());
-//            r.setPostId(p.getPid());
-//            r.setTime(String.valueOf(DateTimeUtil.currentTimeMillis()));
-//            pm.reply(i + 1);
-//            rm.add(r);
-//        }
+        for(int i = 0; i < 100; i++) {
+            User u = um.get("#" + i);
+            Post p = pm.get(i + 1);
+            Reply r = new Reply();
+            r.setRid(0);
+            r.setContent("***" + i + i);
+            r.setUserId(u.getUid());
+            r.setPostId(p.getPid());
+            r.setTime(String.valueOf(DateTimeUtil.currentTimeMillis()));
+            pm.reply(i + 1);
+            rm.add(r);
+        }
     }
 
 //    @Test

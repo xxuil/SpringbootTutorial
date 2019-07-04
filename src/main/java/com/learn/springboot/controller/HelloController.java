@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 @RestController
 public class HelloController {
-    @RequestMapping("/")
+    @RequestMapping("/hello")
     public String hello(){
         return "Hello!" +
                 "";
