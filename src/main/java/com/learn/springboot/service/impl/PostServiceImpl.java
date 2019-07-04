@@ -4,9 +4,11 @@ import com.learn.springboot.mapper.PostMapper;
 import com.learn.springboot.pojo.Post;
 import com.learn.springboot.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class PostServiceImpl implements PostService {
     @Autowired
     PostMapper postMapper;

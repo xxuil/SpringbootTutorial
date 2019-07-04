@@ -84,7 +84,7 @@ public class Post implements Serializable {
 
     @Override
     public String toString() {
-        return "Post: " + pid;
+        return "pid: " + pid + ", title: " + title + ", content" + content + "\n";
     }
 
     @Override

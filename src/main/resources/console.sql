@@ -1,5 +1,4 @@
 use test;
-drop table post;
 create table post
 (
     pid         int auto_increment,
@@ -28,5 +27,15 @@ create table reply
     userId      int not null,
     time        varchar(255) not null,
     primary key (rid)
-) engine=InnoDB default charset = utf8
+) engine=InnoDB default charset = utf8;
+
+create table login_log
+(
+    lid         int auto_increment,
+    userId      int not null,
+    loginTime   varchar(255) not null,
+    ip          varchar(255) not null,
+    device      varchar(255) not null,
+    primary key (lid)
+) engine=InnoDB default charset = utf8;
 

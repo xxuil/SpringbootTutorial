@@ -1,31 +1,25 @@
 package com.learn.springboot.controller;
 
-import com.learn.springboot.mapper.PostMapper;
 import com.learn.springboot.pojo.Post;
-import com.learn.springboot.service.PostService;
+import com.learn.springboot.service.impl.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class PostController {
-
     @Autowired
-    PostService ps;
+    PostServiceImpl ps;
 
     @GetMapping("/posts")
-    public String list() throws Exception {
-        List<Post> posts = ps.getRecent();
-        return null;
+    public String list(){
+        return ps.getRecent().toString();
     }
 
     @GetMapping("/posts/{pid}")
-    public Post get(@PathVariable("pid") int pid) throws Exception {
-        return ps.get(pid);
+    public String get(@PathVariable("pid") int pid) throws Exception {
+        return ps.get(pid).toString();
     }
 }

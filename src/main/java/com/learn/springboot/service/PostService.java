@@ -1,9 +1,11 @@
 package com.learn.springboot.service;
 
 import com.learn.springboot.pojo.Post;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface PostService {
 
     List<Post> getAll();

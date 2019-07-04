@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class LogAspect {
     private final Log logger = LogFactory.getLog(getClass());
 
-    @Before("execution( * com.learn.controller.UserController.login(..))")
+    @Before("execution( * com.learn.springboot.controller.UserController.login(..))")
     public void loginLogAspect(JoinPoint joinPoint) {
         String method = joinPoint.getSignature().toString();
         String args = joinPoint.getArgs().toString();

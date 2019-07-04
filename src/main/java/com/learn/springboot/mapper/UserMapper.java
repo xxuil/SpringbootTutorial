@@ -11,10 +11,10 @@ public interface UserMapper {
     @Update("update user set username = #{username}, password = #{password} where uid = #{uid}")
     void update(User u);
 
-    @Select("select * from user where uid = #{uid}")
-    User get(int uid);
+//    @Select("select * from user where uid = #{uid}")
+//    User get(int uid);
 
-    @Select("select * from user where username = #{username, jdbcType=VARCHAR}")
+    @Select("select * from user where username = #{username}")
     User get(String username);
 
     @Delete("delete from user where uid = #{uid}")
