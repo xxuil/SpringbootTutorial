@@ -18,7 +18,7 @@
 
         <table align='center' border='1' cellspacing='0'>
             <tr>
-                <td>id</td>
+                <td>lid</td>
                 <td>title</td>
                 <td>content</td>
             </tr>
@@ -27,7 +27,7 @@
                     <td>${post.pid}</td>
                     <td>${post.title}</td>
                     <td>${post.content}</td>
-                    <td><a href="deletePost?id=${post.pid}">delete</a> </td>
+                    <td><a href="deletePost?lid=${post.pid}">delete</a> </td>
                 </tr>
             </c:out>
 

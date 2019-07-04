@@ -1,14 +1,14 @@
 package com.learn.springboot.pojo;
 
 public class LoginLog {
-    private int id;
+    private int lid;
     private int userId;
     private String loginTime;
     private String ip;
     private String device;
 
-    public int getId() {
-        return id;
+    public int getLid() {
+        return lid;
     }
 
     public int getUserId() {
@@ -27,8 +27,8 @@ public class LoginLog {
         return device;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setLid(int lid) {
+        this.lid = lid;
     }
 
     public void setUserId(int userId) {

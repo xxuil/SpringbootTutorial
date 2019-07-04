@@ -18,7 +18,7 @@
                 <td>${c.title}</td>
                 <td>${c.viewCount}</td>
                 <td>${c.replyCount}</td>
-                <td><a href="getPost?id=${c.pid}">edit</a> </td>
+                <td><a href="getPost?lid=${c.pid}">edit</a> </td>
             </tr>
         </c:forEach>
     </table>

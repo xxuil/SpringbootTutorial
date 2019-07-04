@@ -19,16 +19,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean login(String username, String password) {
-        return userMapper.get(username).getPassword().equals(password);
+        return userMapper.check(username).getPassword().equals(password);
     }
 
-//    @Override
-//    public User get(int uid) {
-//        return userMapper.get(uid);
-//    }
+    @Override
+    public User get(int uid) {
+        return userMapper.get(uid);
+    }
 
     @Override
     public int getCount() {
         return userMapper.getUserCount();
+    }
+
+    @Override
+    public User getByName(String username) {
+        return userMapper.check(username);
     }
 }

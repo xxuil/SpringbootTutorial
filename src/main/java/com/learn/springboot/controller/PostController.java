@@ -3,19 +3,31 @@ package com.learn.springboot.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.learn.springboot.pojo.Post;
+import com.learn.springboot.pojo.Reply;
+import com.learn.springboot.pojo.User;
 import com.learn.springboot.service.impl.PostServiceImpl;
+import com.learn.springboot.service.impl.ReplyServiceImpl;
+import com.learn.springboot.service.impl.UserServiceImpl;
 import com.learn.springboot.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
 public class PostController {
     @Autowired
     PostServiceImpl ps;
+
+    @Autowired
+    UserServiceImpl us;
+
+    @Autowired
+    ReplyServiceImpl rs;
 
     @GetMapping("/posts")
     public String list(){
@@ -27,17 +39,75 @@ public class PostController {
         return ps.get(pid).toString();
     }
 
-    @RequestMapping("listPost")
-    public ModelAndView listPost(Page page){
-        ModelAndView mav = new ModelAndView();
-        PageHelper.offsetPage(page.getStart(),page.getCount());
-        List<Post> cs= ps.getAll();
-        int total = (int)new PageInfo<>(cs).getTotal();
+//    @RequestMapping("listPost")
+//    public ModelAndView listPost(Page page){
+//        ModelAndView mav = new ModelAndView();
+//        PageHelper.offsetPage(page.getStart(),page.getCount());
+//        List<Post> cs= ps.getAll();
+//        int total = (int)new PageInfo<>(cs).getTotal();
+//
+//        page.caculateLast(total);
+//
+//        mav.addObject("cs", cs);
+//        mav.setViewName("listPost");
+//        return mav;
+//    }
 
-        page.caculateLast(total);
+    @RequestMapping("/")
+    public ModelAndView toMain(HttpSession session) {
+        ModelAndView indexPage = new ModelAndView("main");
+        List<Post> posts = ps.getAll();
 
-        mav.addObject("cs", cs);
-        mav.setViewName("listPost");
-        return mav;
+        if(session.getAttribute("userId") != null) {
+            int uid = (int) session.getAttribute("userId");
+            User user = us.get(uid);
+            indexPage.addObject("user", user);
+        }
+        indexPage.addObject("posts", posts);
+        return indexPage;
     }
+
+    @RequestMapping("/post/{pid}")
+    public ModelAndView toPost(@PathVariable("pid")int pid, HttpSession session) {
+        ps.view(pid);
+        Post p = ps.get(pid);
+        List<Reply> replies = rs.getReplies(pid);
+        ModelAndView postPage = new ModelAndView("detail");
+        postPage.addObject("post", p);
+        postPage.addObject("replies", replies);
+        if(session.getAttribute("userId") != null) {
+            int uid = (int) session.getAttribute("userId");
+            User user = us.get(uid);
+            postPage.addObject("user", user);
+        }
+        return postPage;
+    }
+
+    @RequestMapping(value = "/post/add", method = RequestMethod.POST)
+    public ModelAndView addPost(HttpServletRequest request, HttpSession session){
+        ModelAndView indexPage;
+        if(session.getAttribute("userId") == null) {
+            indexPage = new ModelAndView("redirect:/login");
+            return indexPage;
+        }
+
+        int uid = (int) session.getAttribute("userId");
+        String title = request.getParameter("title");
+        String content = request.getParameter("content");
+
+        Post p = new Post();
+        p.setPid(0);
+        p.setTitle(title);
+        p.setContent(content);
+        p.setUserId(uid);
+        p.setTime(String.valueOf(System.currentTimeMillis()));
+        p.setViewCount(0);
+        p.setReplyCount(0);
+
+        ps.add(p);
+
+        indexPage = new ModelAndView("redirect:/");
+        return indexPage;
+    }
+
 }

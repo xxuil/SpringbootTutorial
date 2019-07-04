@@ -1,48 +1,108 @@
 package com.learn.springboot.controller;
 
 
+import com.learn.springboot.pojo.LoginLog;
 import com.learn.springboot.pojo.User;
-import com.learn.springboot.service.*;
+import com.learn.springboot.service.impl.*;
+import eu.bitwalker.useragentutils.UserAgent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 
 @Controller
 public class UserController {
     @Autowired
-    UserService userService;
+    UserServiceImpl userService;
 
-    @RequestMapping("/login")
-    public String login(){
-        return "login";
-    }
+    @Autowired
+    public LoginLogServiceImpl loginLogService;
 
-    @RequestMapping("/check")
-    public String check(@ModelAttribute("username") String username, @ModelAttribute("password") String password){
-        return "check";
-    }
+    @Autowired
+    public PostServiceImpl postService;
 
-    @RequestMapping("/register")
-    public String register() {
-        return "register";
-    }
+//    @RequestMapping("/login")
+//    public String login(){
+//        return "login";
+//    }
+//
+//    @RequestMapping("/check")
+//    public String check(@ModelAttribute("username") String username, @ModelAttribute("password") String password){
+//        return "check";
+//    }
+//
+//    @RequestMapping("/register")
+//    public String register() {
+//        return "register";
+//    }
 
-    @RequestMapping("/addUser")
-    public String addUser(@ModelAttribute("username") String username, @ModelAttribute("password") String password){
+    @RequestMapping("/user/add/do")
+    public String addUser(HttpServletRequest request) {
         User u = new User();
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
         u.setUid(0);
         u.setUsername(username);
         u.setPassword(password);
         userService.addUser(u);
-        return "login";
+        return "redirect:/";
+    }
+
+
+    @RequestMapping("/api/loginCheck")
+    @ResponseBody
+    public Object login(HttpServletRequest request, HttpSession session) {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        boolean check = userService.login(username, password);
+        HashMap<String,String> res = new HashMap<>();
+
+        if(check) {
+            User u = userService.getByName(username);
+            session.setAttribute("userId", u.getUid());
+            session.setAttribute("username", username);
+
+            String ip = gerRemoteIP(request);
+            UserAgent agent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
+            String userbrowser = agent.getBrowser().toString();
+
+            LoginLog log = new LoginLog();
+            log.setLid(0);
+            log.setDevice(userbrowser);
+            log.setIp(ip);
+            log.setUserId(u.getUid());
+            log.setLoginTime(String.valueOf(System.currentTimeMillis()));
+            loginLogService.addLog(log);
+
+            res.put("stateCode", "2");
+        }
+
+        else {
+            res.put("stateCode", "1");
+        }
+        return res;
+    }
+
+    @RequestMapping("/logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("userId");
+        session.removeAttribute("username");
+        return "redirect:/";
+    }
+
+
+    public String gerRemoteIP(HttpServletRequest request) {
+        if (request.getHeader("x-forwarded-for") == null) {
+            return request.getRemoteAddr();
+        }
+        return request.getHeader("x-forwarded-for");
     }
 
 }

@@ -9,7 +9,9 @@ public interface UserService {
 
     boolean login(String username, String password);
 
-//    User get(int uid);
+    User get(int uid);
+
+    User getByName(String username);
 
     int getCount();
 }

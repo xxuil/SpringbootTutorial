@@ -4,9 +4,11 @@ import com.learn.springboot.mapper.ReplyMapper;
 import com.learn.springboot.pojo.Reply;
 import com.learn.springboot.service.ReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ReplyServiceImpl implements ReplyService {
     @Autowired
     ReplyMapper replyMapper;
