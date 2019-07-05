@@ -1,16 +1,12 @@
 package com.learn.springboot.controller;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.learn.springboot.pojo.Post;
 import com.learn.springboot.pojo.Reply;
 import com.learn.springboot.pojo.User;
-import com.learn.springboot.service.impl.PostServiceImpl;
-import com.learn.springboot.service.impl.ReplyServiceImpl;
-import com.learn.springboot.service.impl.UserServiceImpl;
-import com.learn.springboot.utils.Page;
+import com.learn.springboot.service.PostService;
+import com.learn.springboot.service.ReplyService;
+import com.learn.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,24 +17,24 @@ import java.util.List;
 @RestController
 public class PostController {
     @Autowired
-    PostServiceImpl ps;
+    PostService ps;
 
     @Autowired
-    UserServiceImpl us;
+    UserService us;
 
     @Autowired
-    ReplyServiceImpl rs;
+    ReplyService rs;
 
-    @GetMapping("/posts")
-    public String list(){
-        return ps.getRecent().toString();
-    }
-
-    @GetMapping("/posts/{pid}")
-    public String get(@PathVariable("pid") int pid) throws Exception {
-        return ps.get(pid).toString();
-    }
-
+//    @GetMapping("/posts")
+//    public String list(){
+//        return ps.getRecent().toString();
+//    }
+//
+//    @GetMapping("/posts/{pid}")
+//    public String get(@PathVariable("pid") int pid) throws Exception {
+//        return ps.get(pid).toString();
+//    }
+//
 //    @RequestMapping("listPost")
 //    public ModelAndView listPost(Page page){
 //        ModelAndView mav = new ModelAndView();
@@ -69,7 +65,6 @@ public class PostController {
 
     @RequestMapping("/p/{pid}")
     public ModelAndView toPost(@PathVariable("pid")int pid, HttpSession session) {
-        ps.view(pid);
         Post p = ps.get(pid);
         List<Reply> replies = rs.getReplies(pid);
         ModelAndView postPage = new ModelAndView("detail");

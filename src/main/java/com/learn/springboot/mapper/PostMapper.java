@@ -30,8 +30,8 @@ public interface PostMapper {
     int getPostCount();
 
     @Update("update post set viewCount = viewCount + 1 where pid = #{pid}")
-    void view(int pid);
+    void incrementView(int pid);
 
     @Update("update post set replyCount = replyCount + 1 where pid = #{pid}")
-    void reply(int pid);
+    void incrementReply(int pid);
 }

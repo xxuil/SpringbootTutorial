@@ -1,10 +1,11 @@
 package com.learn.springboot.controller;
 
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.learn.springboot.pojo.LoginLog;
 import com.learn.springboot.pojo.User;
-import com.learn.springboot.service.impl.*;
+import com.learn.springboot.service.LoginLogService;
+import com.learn.springboot.service.PostService;
+import com.learn.springboot.service.UserService;
 import eu.bitwalker.useragentutils.UserAgent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,18 +14,17 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
-import java.util.List;
 
 @Controller
 public class UserController {
     @Autowired
-    UserServiceImpl userService;
+    UserService userService;
 
     @Autowired
-    public LoginLogServiceImpl loginLogService;
+    public LoginLogService loginLogService;
 
     @Autowired
-    public PostServiceImpl postService;
+    public PostService postService;
 
 //    @RequestMapping("/login")
 //    public String login(){

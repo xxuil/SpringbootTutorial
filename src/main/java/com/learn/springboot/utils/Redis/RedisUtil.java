@@ -1,5 +1,6 @@
 package com.learn.springboot.utils.Redis;
 
+import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class RedisUtil<T> {
      * @param <T>
      * @return 返回list值
      */
+    @SuppressWarnings("unchecked")
     public <T> ListOperations<String, T> setCatcheList(String key, List<T> dataList) {
         ListOperations<String, T> listOperations = redisTemplate.opsForList();
         try{
@@ -38,6 +40,7 @@ public class RedisUtil<T> {
         return listOperations;
     }
 
+    @SuppressWarnings("unchecked")
     public <T> List<T> getPageList(String key, long start, long end){
         List<T> pageList = new ArrayList<>();
         try{
@@ -57,17 +60,25 @@ public class RedisUtil<T> {
      * @param <T> 缓存键值对应的数据
      * @return dataList 列表
      */
+    @SuppressWarnings("unchecked")
     public <T> List<T> getCatcheList(String key) {
         List<T> dataList = new ArrayList<>();
         try{
             ListOperations listOperations = redisTemplate.opsForList();
             Long size = listOperations.size(key);
-            for (int i = 0; i < size; i++) {
-                dataList.add((T) listOperations.leftPop(key));
+            if(size != null) {
+                for (int i = 0; i < size; i++) {
+                    dataList.add((T) listOperations.leftPop(key));
+                }
             }
         } catch (Exception e){
             e.printStackTrace();
         }
         return dataList;
+    }
+
+    @SuppressWarnings("unchecked")
+    public Long size(String key) {
+        return redisTemplate.opsForList().size(key);
     }
 }

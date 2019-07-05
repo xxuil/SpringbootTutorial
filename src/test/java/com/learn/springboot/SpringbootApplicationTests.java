@@ -8,11 +8,15 @@ import com.learn.springboot.pojo.Post;
 import com.learn.springboot.pojo.Reply;
 import com.learn.springboot.pojo.User;
 import com.learn.springboot.utils.DateTime.DateTimeUtil;
+import com.learn.springboot.utils.Redis.RedisUtil;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -26,6 +30,9 @@ public class SpringbootApplicationTests {
 
     @Autowired
     ReplyMapper rm;
+
+    @Autowired
+    RedisUtil<Post> util;
 
     @Test
     public void createUser() {
@@ -58,7 +65,7 @@ public class SpringbootApplicationTests {
     @Test
     public void viewPost() {
         for(int i = 0; i < 100; i++){
-            pm.view(i + 1);
+            pm.get(i + 1);
         }
     }
 
@@ -73,27 +80,27 @@ public class SpringbootApplicationTests {
             r.setUserId(u.getUid());
             r.setPostId(p.getPid());
             r.setTime(String.valueOf(DateTimeUtil.currentTimeMillis()));
-            pm.reply(i + 1);
+            pm.incrementReply(i + 1);
             rm.add(r);
         }
     }
 
-//    @Test
-//    public void testRedisA(){
-//        List<Post> testList = pm.findAll();
-//        util.setCatcheList("newest", testList);
-//    }
+    @Test
+    public void testRedisA(){
+        List<Post> testList = pm.findAll();
+        util.setCatcheList("newest", testList);
+    }
 
-//    @Test
-//    public void testRedisB(){
-//        List<Post> testList = util.getCatcheList("newest");
-//        List<Post> that = pm.findAll();
-//        int i = 0;
-//        for(Post p : that){
-//            Assert.assertEquals(p.getPid(), testList.get(i).getPid());
-//            i += 1;
-//        }
-//    }
+    @Test
+    public void testRedisB(){
+        List<Post> testList = util.getCatcheList("newest");
+        List<Post> that = pm.findAll();
+        int i = 0;
+        for(Post p : that){
+            Assert.assertEquals(p.getPid(), testList.get(i).getPid());
+            i += 1;
+        }
+    }
 
 //    @Test
 //    public void testRedisC(){
