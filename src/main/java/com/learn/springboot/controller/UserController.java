@@ -1,19 +1,19 @@
 package com.learn.springboot.controller;
 
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.learn.springboot.pojo.LoginLog;
 import com.learn.springboot.pojo.User;
 import com.learn.springboot.service.impl.*;
 import eu.bitwalker.useragentutils.UserAgent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -55,9 +55,9 @@ public class UserController {
     }
 
 
-    @RequestMapping("/api/loginCheck")
-    @ResponseBody
-    public Object login(HttpServletRequest request, HttpSession session) {
+    @RequestMapping("/user/login/do")
+    public String login( HttpServletRequest request, HttpSession session) {
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -81,13 +81,12 @@ public class UserController {
             log.setLoginTime(String.valueOf(System.currentTimeMillis()));
             loginLogService.addLog(log);
 
-            res.put("stateCode", "2");
+            return "redirect:/";
         }
 
         else {
-            res.put("stateCode", "1");
+            return "redirect:/";
         }
-        return res;
     }
 
     @RequestMapping("/logout")

@@ -30,6 +30,10 @@
         <ul class="list-group" style="width: 100%">
             <li class="list-group-item"><a href="/new">创作新主题</a></li>
         </ul>
+
+        <ul class="list-group" style="width: 100%">
+            <li class="list-group-item"><a href="/logout">退出</a></li>
+        </ul>
     </div>
 </c:if>
 

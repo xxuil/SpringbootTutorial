@@ -3,6 +3,8 @@ package com.learn.springboot.mapper;
 import com.learn.springboot.pojo.User;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 @Mapper
 public interface UserMapper {
     @Insert("insert into user (uid, username, password) values (#{uid}, #{username}, #{password})")
@@ -15,7 +17,7 @@ public interface UserMapper {
     User get(int uid);
 
     @Select("select * from user where username = #{username}")
-    User check(String username);
+    List<User> check(String username);
 
     @Delete("delete from user where uid = #{uid}")
     void delete(int uid);

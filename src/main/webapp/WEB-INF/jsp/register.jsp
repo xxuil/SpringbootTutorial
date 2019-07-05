@@ -53,7 +53,7 @@
 
 
 <!-- 引入header文件 -->
-<%@ include file="header.jsp"%>
+<%--<%@ include file="header.jsp"%>--%>
 
 <div class="panel panel-default" id="login" style="width: 55%;margin-left: 10%;margin-top: 5%;margin-bottom: 5%">
     <div class="panel-heading" style="background-color: #fff">

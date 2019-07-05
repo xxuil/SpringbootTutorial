@@ -12,7 +12,7 @@
 </head>
 <body>
 <!-- 引入header文件 -->
-<%@ include file="header.jsp"%>
+<%--<%@ include file="header.jsp"%>--%>
 <div style="width: 70%;margin:1% 2% 1% 5%;float: left;">
     <div class="panel panel-default" id="main" style="">
         <div class="panel-heading" style="background-color: white">
@@ -20,12 +20,7 @@
                 <div class="panel-heading" style="background-color: white">
                     <a href="/">BBS</a> › 主题
                 </div>
-                <h3>${topic.title}</h3><br/>
-                <div>
-                    <a href="/member/${post.userId}"><span ><strong>${post.userId}</strong></span></a>&nbsp;&nbsp;
-                    <small class="text-muted">${post.time}&nbsp;&nbsp;&nbsp;+08:00</small>&nbsp;&nbsp;
-                    <small class="text-muted">${post.viewCount}次点击</small>
-                </div>
+                <h3>${post.title}</h3><br/>
             </div>
         </div>
 
@@ -54,9 +49,6 @@
                 <c:forEach items="${replies}" var="reply">
                     <li class="list-group-item">
                         <div style="height: 50px">
-                            <div style="float: left;width: 6%;margin-bottom: 5px">
-                                <img width="50px" height="50px" src="${reply.user.avatar} " class="img-rounded">
-                            </div>
                             <div style="width: 89%;float: left">
                                 <a href="/member/${reply.userId}"><strong>${reply.userId}</strong></a>&nbsp;&nbsp;
                                 <small class="text-muted">${reply.time}</small>
@@ -82,8 +74,8 @@
             <div class="panel-body">
                 <div class="form-group">
                     <form action="/reply/add" method="post">
-                        <input type="hidden" name="topicId" value="${post.pid}">
-                        <input type="hidden" name="replyUserId" value="${user.uid}">
+                        <input type="hidden" name="postId" value="${post.pid}">
+                        <input type="hidden" name="userId" value="${user.uid}">
                         <textarea class="form-control" rows="3" name="content" required="required"></textarea><br/>
                         <input type="submit" class="btn btn-default btn-sm" value="回复">
                     </form>

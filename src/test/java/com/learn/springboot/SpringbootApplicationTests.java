@@ -41,7 +41,7 @@ public class SpringbootApplicationTests {
     @Test
     public void createPost() {
         for(int i = 0; i < 100; i++){
-            User u = um.check("#" + i);
+            User u = um.check("#" + i).get(0);
             Post p = new Post();
             p.setPid(0);
             p.setTitle("#" + i);
@@ -65,7 +65,7 @@ public class SpringbootApplicationTests {
     @Test
     public void createReply() {
         for(int i = 0; i < 100; i++) {
-            User u = um.check("#" + i);
+            User u = um.check("#" + i).get(0);
             Post p = pm.get(i + 1);
             Reply r = new Reply();
             r.setRid(0);

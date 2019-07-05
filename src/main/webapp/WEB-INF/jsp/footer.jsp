@@ -50,29 +50,7 @@
     <div class="container">
         社区平台实践
         <br/><br/><br/>
-        <p>Designed by </span> shequtest</p>
-    </div>
-    <div class="info">
-        <p style="text-align: center;font-size: 16px;">统计信息</p>
-        <ul >
-            <li>会员数:</li>
-            <li>话题数:</li>
-        </ul>
-    </div>
-    <div class="info">
-        <p style="text-align: center;font-size: 16px;">友情链接</p>
-<%--        <ul >--%>
-<%--            <li><a href="/">Github</a></li>--%>
-<%--            <li><a href="/">Segmentfault</a></li>--%>
-<%--            <li><a href="/">v2ex</a></li>--%>
-<%--        </ul>--%>
-    </div>
-    <div class="info" >
-        <p style="text-align: center;font-size: 16px;">其他信息</p>
-<%--        <ul >--%>
-<%--            <li><a href="/">关于本站</a></li>--%>
-<%--            <li><a href="/">联系我们</a></li>--%>
-<%--        </ul>--%>
+        <p>Designed by </span> xx</p>
     </div>
 </footer>
 </body>

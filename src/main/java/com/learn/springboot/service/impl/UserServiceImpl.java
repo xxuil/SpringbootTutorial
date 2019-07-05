@@ -6,6 +6,8 @@ import com.learn.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -19,7 +21,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean login(String username, String password) {
-        return userMapper.check(username).getPassword().equals(password);
+        List<User> list = userMapper.check(username);
+        if(list.isEmpty())
+            return false;
+
+        return list.get(0).getPassword().equals(password);
     }
 
     @Override
@@ -34,6 +40,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getByName(String username) {
-        return userMapper.check(username);
+        return userMapper.check(username).get(0);
     }
 }

@@ -51,7 +51,7 @@
     </style>
 </head>
 <body>
-<%@ include file="header.jsp"%>
+<%--<%@ include file="header.jsp"%>--%>
 <div class="panel panel-default" id="main" style="width: 70%;margin:1% 2% 5% 5%;float: left;">
 
     <ul class="list-group" style="width: 100%">
@@ -59,7 +59,7 @@
             <li class="list-group-item">
                 <div style="height: 50px">
                     <div style="width: 89%;float: left">
-                        <a href="/post/${post.pid}">${post.title}</a><br/>
+                        <a href="/p/${post.pid}">${post.title}</a><br/>
                     </div>
                     <div style="width: 5%;float: right;text-align: center">
                         <span class="badge">${post.viewCount}</span>
