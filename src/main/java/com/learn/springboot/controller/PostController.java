@@ -67,7 +67,7 @@ public class PostController {
         return indexPage;
     }
 
-    @RequestMapping("/post/{pid}")
+    @RequestMapping("/p/{pid}")
     public ModelAndView toPost(@PathVariable("pid")int pid, HttpSession session) {
         ps.view(pid);
         Post p = ps.get(pid);
