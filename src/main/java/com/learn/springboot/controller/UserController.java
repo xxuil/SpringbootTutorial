@@ -97,7 +97,7 @@ public class UserController {
     }
 
 
-    public String gerRemoteIP(HttpServletRequest request) {
+    private String gerRemoteIP(HttpServletRequest request) {
         if (request.getHeader("x-forwarded-for") == null) {
             return request.getRemoteAddr();
         }
