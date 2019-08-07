@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * @author Administrator
+ */
 @RestController
 public class PostController {
     @Autowired

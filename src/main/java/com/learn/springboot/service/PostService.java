@@ -16,18 +16,12 @@ public class PostService {
     @Autowired
     RedisUtil<Post> redisUtil;
 
+    private boolean init = false;
 
     public void add(Post p) {
         postMapper.add(p);
         updateRedis();
     }
-
-//    @Override
-//    public void view(int pid) {
-//        postMapper.view(pid);
-//        updateRedis();
-//    }
-
 
     public void update(Post p) {
         postMapper.update(p);
@@ -47,6 +41,10 @@ public class PostService {
 
 
     public List<Post> getAll() {
+        if(!init) {
+            init = true;
+            updateRedis();
+        }
         String key = "newest";
         long end = redisUtil.size(key);
         return redisUtil.getPageList(key, 0, end);

@@ -8,6 +8,11 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
+/**
+ * @author Administrator
+ */
 @Component
 @Aspect
 public class LogAspect {
@@ -16,7 +21,7 @@ public class LogAspect {
     @Before("execution( * com.learn.springboot.controller.UserController.login(..))")
     public void loginLogAspect(JoinPoint joinPoint) {
         String method = joinPoint.getSignature().toString();
-        String args = joinPoint.getArgs().toString();
+        String args = Arrays.toString(joinPoint.getArgs());
         logger.info("---Before method "
                 + method + " invoke, param: " + args + "---");
     }
